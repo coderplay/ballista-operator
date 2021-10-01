@@ -2,6 +2,27 @@ apiVersion: ballista.minzhou.info/v1
 kind: BallistaApplication
 metadata:
   name: ballistaapplication-sample
+  namespace: default
 spec:
-  # Add fields here
-  foo: bar
+  image: "mzhou/ballista:0.6.0-SNAPSHOT"
+  volumes:
+    - name: "test-volume"
+      hostPath:
+        path: "/tmp"
+        type: Directory
+  scheduler:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    volumeMounts:
+      - name: "test-volume"
+        mountPath: "/tmp"
+  executor:
+    cores: 1
+    instances: 1
+    memory: "512m"
+    labels:
+      version: 3.1.1
+    volumeMounts:
+      - name: "test-volume"
+        mountPath: "/tmp"
