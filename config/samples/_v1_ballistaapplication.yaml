@@ -1,0 +1,7 @@
+apiVersion: ballista.minzhou.info/v1
+kind: BallistaApplication
+metadata:
+  name: ballistaapplication-sample
+spec:
+  # Add fields here
+  foo: bar
