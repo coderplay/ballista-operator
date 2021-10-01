@@ -9,7 +9,7 @@ rules:
 - apiGroups:
   - ballista.minzhou.info
   resources:
-  - ballistaapplications
+  - ballistaclusters
   verbs:
   - create
   - delete
@@ -21,13 +21,13 @@ rules:
 - apiGroups:
   - ballista.minzhou.info
   resources:
-  - ballistaapplications/finalizers
+  - ballistaclusters/finalizers
   verbs:
   - update
 - apiGroups:
   - ballista.minzhou.info
   resources:
-  - ballistaapplications/status
+  - ballistaclusters/status
   verbs:
   - get
   - patch

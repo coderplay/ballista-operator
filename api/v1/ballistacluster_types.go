@@ -21,10 +21,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// BallistaApplicationSpec defines the desired state of BallistaApplication
-type BallistaApplicationSpec struct {
+// BallistaClusterSpec defines the desired state of BallistaCluster
+type BallistaClusterSpec struct {
 
-	// BallistaVersion is the version of Ballista the application uses.
+	// BallistaVersion is the version of Ballista the cluster uses.
 	BallistaVersion string `json:"ballistaVersion"`
 
 	// Image is the container image for the scheduler, executor, and init-container. Any custom container images for the
@@ -44,7 +44,7 @@ type SchedulerSpec struct {
 	apiv1.PodSpec `json:",inline"`
 	// PodName is the name of the scheduler pod that the user creates. This is used for the
 	// in-cluster client mode in which the user creates a client pod where the scheduler of
-	// the user application runs. It's an error to set this field if Mode is not
+	// the user cluster runs. It's an error to set this field if Mode is not
 	// in-cluster-client.
 	// +optional
 	// +kubebuilder:validation:Pattern=[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*
@@ -84,8 +84,8 @@ type Port struct {
 	ContainerPort int32  `json:"containerPort"`
 }
 
-// BallistaApplicationStatus defines the observed state of BallistaApplication
-type BallistaApplicationStatus struct {
+// BallistaClusterStatus defines the observed state of BallistaCluster
+type BallistaClusterStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 }
@@ -93,25 +93,25 @@ type BallistaApplicationStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// BallistaApplication is the Schema for the ballistaapplications API
-// BallistaApplication represents a Ballista application running on and using Kubernetes as a cluster manager.
-type BallistaApplication struct {
+// BallistaCluster is the Schema for the ballistaclusters API
+// BallistaCluster represents a Ballista cluster running on and using Kubernetes as a cluster manager.
+type BallistaCluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   BallistaApplicationSpec   `json:"spec,omitempty"`
-	Status BallistaApplicationStatus `json:"status,omitempty"`
+	Spec   BallistaClusterSpec   `json:"spec,omitempty"`
+	Status BallistaClusterStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// BallistaApplicationList contains a list of BallistaApplication
-type BallistaApplicationList struct {
+// BallistaClusterList contains a list of BallistaCluster
+type BallistaClusterList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []BallistaApplication `json:"items"`
+	Items           []BallistaCluster `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&BallistaApplication{}, &BallistaApplicationList{})
+	SchemeBuilder.Register(&BallistaCluster{}, &BallistaClusterList{})
 }

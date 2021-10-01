@@ -1,7 +1,7 @@
 apiVersion: ballista.minzhou.info/v1
-kind: BallistaApplication
+kind: BallistaCluster
 metadata:
-  name: ballistaapplication-sample
+  name: ballistacluster-sample
   namespace: default
 spec:
   image: "mzhou/ballista:0.6.0-SNAPSHOT"

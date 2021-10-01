@@ -78,15 +78,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&controllers.BallistaApplicationReconciler{
+	if err = (&controllers.BallistaClusterReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create controller", "controller", "BallistaApplication")
+		setupLog.Error(err, "unable to create controller", "controller", "BallistaCluster")
 		os.Exit(1)
 	}
-	if err = (&ballistaminzhouinfov1.BallistaApplication{}).SetupWebhookWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create webhook", "webhook", "BallistaApplication")
+	if err = (&ballistaminzhouinfov1.BallistaCluster{}).SetupWebhookWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create webhook", "webhook", "BallistaCluster")
 		os.Exit(1)
 	}
 	//+kubebuilder:scaffold:builder

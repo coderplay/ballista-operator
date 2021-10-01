@@ -27,32 +27,30 @@ import (
 	ballistaminzhouinfov1 "github.com/coderplay/ballista-operator/api/v1"
 )
 
-// BallistaApplicationReconciler reconciles a BallistaApplication object
-type BallistaApplicationReconciler struct {
+// BallistaClusterReconciler reconciles a BallistaCluster object
+type BallistaClusterReconciler struct {
 	client.Client
 	Scheme *runtime.Scheme
 }
 
-//+kubebuilder:rbac:groups=ballista.minzhou.info,resources=ballistaapplications,verbs=get;list;watch;create;update;patch;delete
-//+kubebuilder:rbac:groups=ballista.minzhou.info,resources=ballistaapplications/status,verbs=get;update;patch
-//+kubebuilder:rbac:groups=ballista.minzhou.info,resources=ballistaapplications/finalizers,verbs=update
+//+kubebuilder:rbac:groups=ballista.minzhou.info,resources=ballistaclusters,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=ballista.minzhou.info,resources=ballistaclusters/status,verbs=get;update;patch
+//+kubebuilder:rbac:groups=ballista.minzhou.info,resources=ballistaclusters/finalizers,verbs=update
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
 //
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.8.3/pkg/reconcile
-func (r *BallistaApplicationReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+func (r *BallistaClusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	_ = log.FromContext(ctx)
-
-
 
 	return ctrl.Result{}, nil
 }
 
 // SetupWithManager sets up the controller with the Manager.
-func (r *BallistaApplicationReconciler) SetupWithManager(mgr ctrl.Manager) error {
+func (r *BallistaClusterReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&ballistaminzhouinfov1.BallistaApplication{}).
+		For(&ballistaminzhouinfov1.BallistaCluster{}).
 		Complete(r)
 }

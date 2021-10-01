@@ -1,20 +1,24 @@
-# permissions for end users to view ballistaapplications.
+# permissions for end users to edit ballistaclusters.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: ballistaapplication-viewer-role
+  name: ballistacluster-editor-role
 rules:
 - apiGroups:
   - ballista.minzhou.info
   resources:
-  - ballistaapplications
+  - ballistaclusters
   verbs:
+  - create
+  - delete
   - get
   - list
+  - patch
+  - update
   - watch
 - apiGroups:
   - ballista.minzhou.info
   resources:
-  - ballistaapplications/status
+  - ballistaclusters/status
   verbs:
   - get

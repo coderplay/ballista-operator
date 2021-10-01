@@ -6,21 +6,21 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.4.1
   creationTimestamp: null
-  name: ballistaapplications.ballista.minzhou.info
+  name: ballistaclusters.ballista.minzhou.info
 spec:
   group: ballista.minzhou.info
   names:
-    kind: BallistaApplication
-    listKind: BallistaApplicationList
-    plural: ballistaapplications
-    singular: ballistaapplication
+    kind: BallistaCluster
+    listKind: BallistaClusterList
+    plural: ballistaclusters
+    singular: ballistacluster
   scope: Namespaced
   versions:
   - name: v1
     schema:
       openAPIV3Schema:
-        description: BallistaApplication is the Schema for the ballistaapplications
-          API BallistaApplication represents a Ballista application running on and
+        description: BallistaCluster is the Schema for the ballistaclusters
+          API BallistaCluster represents a Ballista cluster running on and
           using Kubernetes as a cluster manager.
         properties:
           apiVersion:
@@ -36,10 +36,10 @@ spec:
           metadata:
             type: object
           spec:
-            description: BallistaApplicationSpec defines the desired state of BallistaApplication
+            description: BallistaClusterSpec defines the desired state of BallistaCluster
             properties:
               ballistaVersion:
-                description: BallistaVersion is the version of Ballista the application
+                description: BallistaVersion is the version of Ballista the cluster
                   uses.
                 type: string
               image:
@@ -51,7 +51,7 @@ spec:
             - ballistaVersion
             type: object
           status:
-            description: BallistaApplicationStatus defines the observed state of BallistaApplication
+            description: BallistaClusterStatus defines the observed state of BallistaCluster
             type: object
         type: object
     served: true
