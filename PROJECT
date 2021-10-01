@@ -1,0 +1,6 @@
+domain: ballista.minzhou.info
+layout:
+- go.kubebuilder.io/v3
+projectName: ballista-operator
+repo: github.com/coderplay/ballista-operator
+version: "3"
