@@ -1,0 +1,34 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - ballista.minzhou.info
+  resources:
+  - ballistaapplications
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ballista.minzhou.info
+  resources:
+  - ballistaapplications/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - ballista.minzhou.info
+  resources:
+  - ballistaapplications/status
+  verbs:
+  - get
+  - patch
+  - update
