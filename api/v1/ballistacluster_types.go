@@ -84,11 +84,64 @@ type Port struct {
 	ContainerPort int32  `json:"containerPort"`
 }
 
+
+
 // BallistaClusterStatus defines the observed state of BallistaCluster
 type BallistaClusterStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	ClusterID string `json:"clusterId,omitempty"`
+	ClusterState ClusterState `json:"clusterState,omitempty"`
+	// ExecutorState records the state of executors by executor Pod names.
+	ExecutorState map[string]ExecutorState `json:"executorState,omitempty"`
 }
+
+// ClusterStateType represents the type of the current state of an application.
+type ClusterStateType string
+
+// Different states an application may have.
+const (
+	NewState              ClusterStateType = ""
+	Pending               ClusterStateType = "PENDING"
+	RunningState          ClusterStateType = "RUNNING"
+	RestartWhenReadyState ClusterStateType = "RESTART_WHEN_READY"
+	Restarting            ClusterStateType = "RESTARTING"
+
+	TerminateWhenReady    ClusterStateType = "TERMINATE_WHEN_READY"
+	Terminating           ClusterStateType = "TERMINATING"
+	Terminated            ClusterStateType = "TERMINATED"
+
+	UnknownState          ClusterStateType = "UNKNOWN"
+)
+
+// ClusterState tells the current state of the application and an error message in case of failures.
+type ClusterState struct {
+	State        ClusterStateType `json:"state"`
+	ErrorMessage string           `json:"errorMessage,omitempty"`
+}
+
+// SchedulerState tells the current state of a ballista scheduler.
+type SchedulerState string
+
+// Different states a ballista Scheduler may have.
+const (
+	SchedulerPendingState   SchedulerState = "PENDING"
+	SchedulerRunningState   SchedulerState = "RUNNING"
+	SchedulerCompletedState SchedulerState = "COMPLETED"
+	SchedulerFailedState    SchedulerState = "FAILED"
+	SchedulerUnknownState   SchedulerState = "UNKNOWN"
+)
+
+
+// ExecutorState tells the current state of an executor.
+type ExecutorState string
+
+// Different states an executor may have.
+const (
+	ExecutorPendingState   ExecutorState = "PENDING"
+	ExecutorRunningState   ExecutorState = "RUNNING"
+	ExecutorCompletedState ExecutorState = "COMPLETED"
+	ExecutorFailedState    ExecutorState = "FAILED"
+	ExecutorUnknownState   ExecutorState = "UNKNOWN"
+)
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status

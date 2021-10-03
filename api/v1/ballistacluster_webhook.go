@@ -42,7 +42,9 @@ var _ webhook.Defaulter = &BallistaCluster{}
 func (r *BallistaCluster) Default() {
 	ballistaclusterlog.Info("default", "name", r.Name)
 
-	// TODO(user): fill in your defaulting logic.
+
+	// TODO(mzhou): scheduler defaults and executor defaults
+
 }
 
 // TODO(user): change verbs to "verbs=create;update;delete" if you want to enable deletion validation.
